@@ -1,58 +1,60 @@
 /**
 Core script to handle the entire theme and core functions
 **/
-var KingArchitect = function(){
+const StudioAX3 = function(){
 	/* Search Bar ============ */
-	siteUrl = '';
+	let siteUrl = '';
 	
-	var screenWidth = $( window ).width();
+	let screenWidth = $( window ).width();
 	
 	/* One Page Layout ============ */
-	var onePageLayout = function() {
+	const onePageLayout = function() {
 		'use strict';
-		var headerHeight =   parseInt($('.onepage').css('height'), 10);
+		let headerHeight = parseInt($('.onepage').css('height'), 10);
 		
-		$(".scroll").unbind().on('click',function(event) 
+		$(".scroll").unbind().on('click', function(event) 
 		{
 			event.preventDefault();
 			
 			if (this.hash !== "") {
-				var hash = this.hash;	
-				var seactionPosition = $(hash).offset().top;
-				var headerHeight =   parseInt($('.onepage').css('height'), 10);
-				
+				const hash = this.hash;	
+				const sectionPosition = $(hash).offset().top;
+				let headerHeight = parseInt($('.onepage').css('height'), 10);
 				
 				$('body').scrollspy({target: ".navbar", offset: headerHeight+2}); 
 				
-				var scrollTopPosition = seactionPosition - (headerHeight);
+				const scrollTopPosition = sectionPosition - (headerHeight);
 				
 				$('html, body').animate({
 					scrollTop: scrollTopPosition
-				}, 800, function(){
-					
-				});
+				}, 800, function(){});
 			}   
 		});
 		$('body').scrollspy({target: ".navbar", offset: headerHeight + 2});  
 	}
 	
 	/* Header Height ============ */
-	var handleResizeElement = function(){
+	let handleResizeElement = function(){
+		let HeaderHeight = $('.header').height();
+
 		$('.header').css('height','');
-		var HeaderHeight = $('.header').height();
 		$('.header').css('height', HeaderHeight);
+
 		if(screenWidth > 991 ){
-			$('.homedemo').find('.mega-menu').css('height','calc(100vh - '+HeaderHeight+'px)');
+			$('.homedemo')
+				.find('.mega-menu')
+				.css('height', `calc(100vh - ${HeaderHeight}px)`);
 		}
 	}
 	
 	/* Load File ============ */
 	var dzTheme = function(){
 		 'use strict';
-		 var loadingImage = '<img src="images/loading.gif">';
+		 let loadingImage = '<img src="images/loading.gif">';
+
 		 jQuery('.dzload').each(function(){
-		 var dzsrc =   siteUrl + $(this).attr('dzsrc');
-		  //jQuery(this).html(loadingImage);
+			let dzsrc = siteUrl + $(this).attr('dzsrc');
+			//jQuery(this).html(loadingImage);
 		 	jQuery(this).hide(function(){
 				jQuery(this).load(dzsrc, function(){
 					jQuery(this).fadeIn('slow');
@@ -77,8 +79,9 @@ var KingArchitect = function(){
 	}
 	
 	/* Magnific Popup ============ */
-	var MagnificPopup = function(){
-		'use strict';	
+	let MagnificPopup = function(){
+		'use strict';
+
 		/* magnificPopup function */
 		jQuery('.mfp-gallery').magnificPopup({
 			delegate: '.mfp-link',
@@ -92,9 +95,7 @@ var KingArchitect = function(){
 			},
 			image: {
 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-				titleSrc: function(item) {
-					return item.el.attr('title') + '<small></small>';
-				}
+				titleSrc: item => `${item.el.attr('title')}<small></small>`
 			}
 		});
 		/* magnificPopup function end */
@@ -103,14 +104,14 @@ var KingArchitect = function(){
 		jQuery('.video').magnificPopup({
 			type: 'iframe',
 			iframe: {
-				markup: '<div class="mfp-iframe-scaler">'+
-						 '<div class="mfp-close"></div>'+
-						 '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-						 '<div class="mfp-title">Some caption</div>'+
-						 '</div>'
+				markup: `<div class="mfp-iframe-scaler">
+							<div class="mfp-close"></div>
+							<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>
+							<div class="mfp-title">Some caption</div>
+						</div>`
 			},
 			callbacks: {
-				markupParse: function(template, values, item) {
+				markupParse: (template, values, item) => {
 					values.title = item.el.attr('title');
 				}
 			}
@@ -122,16 +123,15 @@ var KingArchitect = function(){
 			mainClass: 'mfp-fade',
 			removalDelay: 160,
 			preloader: false,
-
 			fixedContentPos: false
 		});
 	}
 	
 	
 	/* Scroll To Top ============ */
-	var scrollTop = function (){
+	let scrollTop = function (){
 		'use strict';
-		var scrollTop = jQuery("button.scroltop");
+		let scrollTop = jQuery("button.scroltop");
 		/* page scroll top on click function */	
 		scrollTop.on('click',function() {
 			jQuery("html, body").animate({
@@ -141,7 +141,7 @@ var KingArchitect = function(){
 		})
 
 		jQuery(window).bind("scroll", function() {
-			var scroll = jQuery(window).scrollTop();
+			let scroll = jQuery(window).scrollTop();
 			if (scroll > 900) {
 				jQuery("button.scroltop").fadeIn(1000);
 			} else {
@@ -152,7 +152,7 @@ var KingArchitect = function(){
 	}
 	
 	/* handle Accordian ============ */
-	var handleAccordian = function(){
+	let handleAccordian = function(){
 		/* accodin open close icon change */	 	
 		jQuery('#accordion').on('hidden.bs.collapse', function(e){
 			jQuery(e.target)
@@ -170,14 +170,14 @@ var KingArchitect = function(){
 	}
 	
 	/* Equal Height ============ */
-	var equalHeight = function(container) {
+	let equalHeight = function(container) {
 		
 		if(jQuery(container).length == 0)
 		{
 			return false
 		}
 			
-		var currentTallest = 0, 
+		let currentTallest = 0, 
 			currentRowStart = 0, 
 			rowDivs = new Array(), 
 			$el, topPosition = 0;
@@ -207,29 +207,30 @@ var KingArchitect = function(){
 	}
 	
 	/* Footer Align ============ */
-	var footerAlign = function() {
+	let footerAlign = function() {
 		'use strict';
 		jQuery('.site-footer').css('display', 'block');
 		jQuery('.site-footer').css('height', 'auto');
-		var footerHeight = jQuery('.site-footer').outerHeight();
+		let footerHeight = jQuery('.site-footer').outerHeight();
 		jQuery('.footer-fixed > .page-wraper').css('padding-bottom', footerHeight);
 		jQuery('.site-footer').css('height', footerHeight);
 	}
 	
 	/* File Input ============ */
-	var fileInput = function(){
+	let fileInput = function(){
 		'use strict';
+
 		/* Input type file jQuery */	 	 
 		jQuery(document).on('change', '.btn-file :file', function() {
-			var input = jQuery(this);
-			var	numFiles = input.get(0).files ? input.get(0).files.length : 1;
-			var	label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+			let input = jQuery(this);
+			let	numFiles = input.get(0).files ? input.get(0).files.length : 1;
+			let	label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
 			input.trigger('fileselect', [numFiles, label]);
 		});
 		
 		jQuery('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 			input = jQuery(this).parents('.input-group').find(':text');
-			var log = numFiles > 10 ? numFiles + ' files selected' : label;
+			let log = numFiles > 10 ? numFiles + ' files selected' : label;
 		
 			if (input.length) {
 				input.val(log);
@@ -241,13 +242,14 @@ var KingArchitect = function(){
 	}
 	
 	/* Header Fixed ============ */
-	var headerFix = function(){
+	let headerFix = function(){
 		'use strict';
+
 		/* Main navigation fixed on top  when scroll down function custom */		
 		jQuery(window).bind('scroll', function () {
 			if(jQuery('.sticky-header').length)
 			{
-				var menu = jQuery('.sticky-header');
+				let menu = jQuery('.sticky-header');
 				if ($(window).scrollTop() > menu.offset().top) {
 					menu.addClass('is-fixed');
 				} else {
@@ -259,12 +261,13 @@ var KingArchitect = function(){
 	}
 	
 	/* Masonry Box ============ */
-	var masonryBox = function(){
+	let masonryBox = function(){
 		'use strict';
 		/* masonry by  = bootstrap-select.min.js */
 		if(jQuery('#masonry, .masonry').length)
 		{
-			var self = $("#masonry, .masonry");
+			let self = $("#masonry, .masonry");
+
 			if(jQuery('.card-container').length)
 		    {
 				self.imagesLoaded(function () {
@@ -280,7 +283,8 @@ var KingArchitect = function(){
 		{
 			jQuery(".filters").on('click','li',function(e) {
 				e.preventDefault();
-				var filter = $(this).attr("data-filter");
+				let filter = $(this).attr("data-filter");
+
 				self.masonryFilter({
 					filter: function () {
 						if (!filter) return true;
@@ -295,7 +299,7 @@ var KingArchitect = function(){
 	
 	
 	/* Counter Number ============ */
-	var counter = function(){
+	let counter = function(){
 		if(jQuery('.counter').length)
 		{
 			jQuery('.counter').counterUp({
@@ -306,7 +310,7 @@ var KingArchitect = function(){
 	}
 	
 	/* Video Popup ============ */
-	var handleVideo = function(){
+	let handleVideo = function(){
 		/* Video responsive function */	
 		jQuery('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
 		jQuery('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');	
@@ -314,7 +318,7 @@ var KingArchitect = function(){
 	}
 	
 	/* Gallery Filter ============ */
-	var handleFilterMasonary = function(){
+	let handleFilterMasonary = function(){
 		/* gallery filter activation = jquery.mixitup.min.js */ 
 		if (jQuery('#image-gallery-mix').length) {
 			jQuery('.gallery-filter').find('li').each(function () {
@@ -324,7 +328,7 @@ var KingArchitect = function(){
 		};
 		if(jQuery('.gallery-filter.masonary').length){
 			jQuery('.gallery-filter.masonary').on('click','span', function(){
-				var selector = $(this).parent().attr('data-filter');
+				let selector = $(this).parent().attr('data-filter');
 				jQuery('.gallery-filter.masonary span').parent().removeClass('active');
 				jQuery(this).parent().addClass('active');
 				jQuery('#image-gallery-isotope').isotope({ filter: selector });
@@ -335,7 +339,7 @@ var KingArchitect = function(){
 	}
 	
 	/* handle Bootstrap Select ============ */
-	var handleBootstrapSelect = function(){
+	let handleBootstrapSelect = function(){
 		/* Bootstrap Select box function by  = bootstrap-select.min.js */ 
 		if (jQuery('select').length) {
 		    jQuery('select').selectpicker();
@@ -344,12 +348,12 @@ var KingArchitect = function(){
 	}
 	
 	/* Resizebanner ============ */
-	var handleBannerResize = function(){
+	let handleBannerResize = function(){
 		$(".full-height").css("height", $(window).height());
 	}
 	
 	/* Countdown ============ */
-	var handleCountDown = function(WebsiteLaunchDate){
+	let handleCountDown = function(WebsiteLaunchDate){
 		/* Time Countr Down Js */
 		if($(".countdown").length)
 		{
@@ -361,10 +365,10 @@ var KingArchitect = function(){
 	}
 	
 	/* WOW ANIMATION ============ */
-	var wow_animation = function(){
+	let wow_animation = function(){
 		if($('.wow').length > 0)
 		{
-			var wow = new WOW(
+			let wow = new WOW(
 			{
 			  boxClass:     'wow',      // animated element css class (default is wow)
 			  animateClass: 'animated', // animation css class (default is animated)
@@ -377,7 +381,7 @@ var KingArchitect = function(){
 	
 	/* BGEFFECT ============ */
 	
-	var boxHover = function(){
+	let boxHover = function(){
 	
 		jQuery('.box-hover').on('mouseenter',function(){
 			jQuery('.box-hover').removeClass('active');
@@ -386,9 +390,9 @@ var KingArchitect = function(){
 		})
 	}
 	
-	var reposition = function (){
+	let reposition = function (){
 		'use strict';
-		var modal = jQuery(this),
+		let modal = jQuery(this),
 		dialog = modal.find('.modal-dialog');
 		modal.css('display', 'block');
 		
@@ -397,7 +401,7 @@ var KingArchitect = function(){
 		dialog.css("margin-top", Math.max(0, (jQuery(window).height() - dialog.height()) / 2));
 	}
 	
-	var handelResize = function (){
+	let handelResize = function (){
 		
 		/* Reposition when the window is resized */
 		jQuery(window).on('resize', function() {
@@ -409,23 +413,23 @@ var KingArchitect = function(){
 	}
 	
 	/* Website Launch Date */ 
-	var WebsiteLaunchDate = new Date();
+	let WebsiteLaunchDate = new Date();
 	monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	WebsiteLaunchDate.setMonth(WebsiteLaunchDate.getMonth() + 1);
 	WebsiteLaunchDate =  WebsiteLaunchDate.getDate() + " " + monthNames[WebsiteLaunchDate.getMonth()] + " " + WebsiteLaunchDate.getFullYear();
 	/* Website Launch Date END */ 
 	
 	/* Header Height ============ */
-	var setResizeMargin = function(){
+	let setResizeMargin = function(){
 		if(($('.setResizeMargin').length > 0) && screenWidth >= 1280){
-			var containerSize = $('.container').width();
-			var getMargin = (screenWidth - containerSize)/2;
+			let containerSize = $('.container').width();
+			let getMargin = (screenWidth - containerSize)/2;
 			$('.setResizeMargin').css('margin-left',getMargin);
 		}
 	}
 	
 	/* Light Gallery ============ */
-	var lightGallery = function (){
+	let lightGallery = function (){
 		if(($('#lightgallery, .lightgallery').length > 0)){
 			$('#lightgallery, .lightgallery').lightGallery({
 				selector : '.lightimg',
@@ -440,7 +444,6 @@ var KingArchitect = function(){
 	var dzTheme = function(){
 		 'use strict';
 		
-				
 		if(screenWidth <= 991 ){
 			jQuery('.navbar-nav > li > a, .sub-menu > li > a').unbind().on('click', function(e){
 				//e.preventDefault();
@@ -476,9 +479,6 @@ var KingArchitect = function(){
 				jQuery('.enter-form').removeClass('active');
 			}, 500);
 		});
-		
-		
-		
 		
 	}
 	
@@ -529,7 +529,7 @@ var KingArchitect = function(){
 /* Document.ready Start */	
 jQuery(document).ready(function() {
     'use strict';
-	KingArchitect.init();
+	StudioAX3.init();
 	
 	$('a[data-toggle="tab"]').click(function(){
 		// todo remove snippet on bootstrap v4
@@ -544,13 +544,13 @@ jQuery(document).ready(function() {
 	
 	jQuery('#faqSpecifications .card-header a').on('mouseover',function(){
 		$('.faq-media img').removeClass('active');
-		var imageDivId = $(this).attr('data-image-bx');
+		let imageDivId = $(this).attr('data-image-bx');
 		$('#'+imageDivId).addClass('active');
 	}); 
 	
 	jQuery('.gallery-category .items').on('mouseover',function(){
 		$('.gallery-img img').removeClass('active');
-		var imageDivId = $(this).attr('data-image-bx');
+		let imageDivId = $(this).attr('data-image-bx');
 		$('#'+imageDivId).addClass('active');
 	}); 
 
@@ -560,7 +560,7 @@ jQuery(document).ready(function() {
 /* Window Load START */
 jQuery(window).on('load',function () {
 	'use strict'; 
-	KingArchitect.load();
+	StudioAX3.load();
 	setTimeout(function(){
 		jQuery('#loading-area').remove();
 	}, 0);
@@ -569,6 +569,6 @@ jQuery(window).on('load',function () {
 /* Window Resize START */
 jQuery(window).on('resize',function () {
 	'use strict'; 
-	KingArchitect.resize();
+	StudioAX3.resize();
 });
 /*  Window Resize END */

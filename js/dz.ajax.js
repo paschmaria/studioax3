@@ -136,7 +136,6 @@ if($("#gmap_canvas").length > 1) {
 }
 
 
-
 jQuery(document).ready(function() {
     'use strict';
 	contactForm();

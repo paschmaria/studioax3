@@ -1,7 +1,6 @@
 /*
-    Name: KingArchitect 
-    Author: DexignZone
-    Portfolio : https://themeforest.net/user/dexignzone/portfolio
+    Name: StudioAX3 
+    Author: Paschal Onuorah
    
 
     Table of Content: 
@@ -13988,7 +13987,7 @@ label.error {
 .wlcm-form {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between; }
+  justify-content: flex-end; }
   @media only screen and (max-width: 575px) {
     .wlcm-form {
       display: block;

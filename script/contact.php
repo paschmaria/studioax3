@@ -1,7 +1,5 @@
 <?php
 /*
-Template Name: RestroKing - Cakery & Bakery HTML5 Template
-
 Variable
 	$recaptchaSecret : Recaptcha Secret Key
  
@@ -25,8 +23,8 @@ require('recaptcha-master/src/autoload.php');
 /* ReCaptch Secret */
 $recaptchaSecret = '6LefsVUUAAAAABy0gWJlqIPO3YpVkxgcjy9XJ5kQ';
 
-$dzEmailTo 		= "test@dexignlab.com";   /* Receiver Email Address */
-$dzEmailFrom    = "KingArchitect Contact";
+$dzEmailTo 		= "enquiries@studioax3.com.ng";   /* Receiver Email Address */
+$dzEmailFrom    = "Studio AX3 Contact";
 
 function pr($value)
 {
@@ -75,7 +73,7 @@ try {
 				$dzRes['status'] = 0;
 				$dzRes['msg'] = 'Wrong Email Format.';
 			}
-			$dzMailSubject = 'RestroKing|Contact Form: A Person want to contact';
+			$dzMailSubject = 'Studio AX3|Contact Form: A Person want to contact';
 			$dzMailMessage	= 	"
 								A person want to contact you: <br><br>
 								Name: $dzName<br/>
@@ -133,7 +131,7 @@ try {
 			
 				
 			
-			$dzMailSubject = 'RestroKing|Appointment Form: A Person want to contact';
+			$dzMailSubject = 'Studio AX3|Appointment Form: A Person want to contact';
 			$dzMailMessage	= 	"
 								A person want to contact you: <br><br>
 								Name: $dzName<br/>
