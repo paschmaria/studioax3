@@ -263,10 +263,11 @@ const StudioAX3 = function(){
 	/* Masonry Box ============ */
 	let masonryBox = function(){
 		'use strict';
+
 		/* masonry by  = bootstrap-select.min.js */
 		if(jQuery('#masonry, .masonry').length)
 		{
-			let self = $("#masonry, .masonry");
+			var self = $("#masonry, .masonry");
 
 			if(jQuery('.card-container').length)
 		    {
@@ -279,12 +280,13 @@ const StudioAX3 = function(){
 				});
 			}
 		}
+
 		if(jQuery('.filters').length)
 		{
 			jQuery(".filters").on('click','li',function(e) {
 				e.preventDefault();
-				let filter = $(this).attr("data-filter");
-
+				var filter = $(this).attr("data-filter");
+				
 				self.masonryFilter({
 					filter: function () {
 						if (!filter) return true;
