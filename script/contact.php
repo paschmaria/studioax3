@@ -21,10 +21,10 @@ Variable
 require('recaptcha-master/src/autoload.php');
 
 /* ReCaptch Secret */
-$recaptchaSecret = '6LefsVUUAAAAABy0gWJlqIPO3YpVkxgcjy9XJ5kQ';
+$recaptchaSecret = '6LdhYrkZAAAAAH17VvWlVdclF3TjkpQle6-q590N';
 
-$dzEmailTo 		= "enquiries@studioax3.com.ng";   /* Receiver Email Address */
-$dzEmailFrom    = "Studio AX3 Contact";
+$dzEmailTo 		= "info@studioax3.com.ng";   /* Receiver Email Address */
+$dzEmailFrom    = "Contact from Website";
 
 function pr($value)
 {
