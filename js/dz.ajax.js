@@ -15,15 +15,16 @@ File : dz.ajax.js
 function contactForm()
 {
 	window.verifyRecaptchaCallback = function (response) {
-		console.log(response);
         $('input[data-recaptcha]').val(response).trigger('change');
     }
 
     window.expiredRecaptchaCallback = function () {
         $('input[data-recaptcha]').val("").trigger('change');
-    }
+	}
+	
 	'use strict';
 	var msgDiv;
+	
 	$(".dzForm").submit(function(e)
 	{
 		e.preventDefault();	//STOP default action

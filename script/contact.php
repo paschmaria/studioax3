@@ -21,7 +21,7 @@ Variable
 require('recaptcha-master/src/autoload.php');
 
 /* ReCaptch Secret */
-$recaptchaSecret = '6LdhYrkZAAAAAH17VvWlVdclF3TjkpQle6-q590N';
+$recaptchaSecret = '6Lc1hL8ZAAAAANLvjWrF6FiXG3GG2A6rwwSAPob9';
 
 $dzEmailTo 		= "info@studioax3.com.ng";   /* Receiver Email Address */
 $dzEmailFrom    = "Contact from Website";
@@ -73,9 +73,9 @@ try {
 				$dzRes['status'] = 0;
 				$dzRes['msg'] = 'Wrong Email Format.';
 			}
-			$dzMailSubject = 'Studio AX3|Contact Form: A Person want to contact';
+			$dzMailSubject = 'Studio AX3|Contact Form: You have a message';
 			$dzMailMessage	= 	"
-								A person want to contact you: <br><br>
+								A following person wants to contact you: <br><br>
 								Name: $dzName<br/>
 								Email: $dzEmail<br/>
 								Message: $dzMessage<br/>
